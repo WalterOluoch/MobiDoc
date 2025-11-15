@@ -43,7 +43,6 @@ const Register = () => {
       }
 
       const user = await register(userData);
-      // Redirect based on role
       if (user.role === 'admin') {
         navigate('/admin/dashboard');
       } else if (user.role === 'doctor') {
@@ -59,8 +58,14 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div
+      className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "url('/background.jpg')" }}
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black opacity-30"></div>
+
+      <div className="relative z-10 max-w-md w-full space-y-8 p-6 bg-white/80 rounded-md shadow-md">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Create your account
@@ -73,6 +78,7 @@ const Register = () => {
             </div>
           )}
           <div className="space-y-4">
+            {/* Name */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                 Name
@@ -87,6 +93,8 @@ const Register = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* Email */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email
@@ -101,6 +109,8 @@ const Register = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* Password */}
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
@@ -115,6 +125,8 @@ const Register = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* Phone */}
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
                 Phone
@@ -128,6 +140,8 @@ const Register = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* Role */}
             <div>
               <label htmlFor="role" className="block text-sm font-medium text-gray-700">
                 Role
@@ -143,6 +157,8 @@ const Register = () => {
                 <option value="doctor">Doctor</option>
               </select>
             </div>
+
+            {/* Doctor-specific fields */}
             {formData.role === 'doctor' && (
               <>
                 <div>
@@ -176,6 +192,7 @@ const Register = () => {
             )}
           </div>
 
+          {/* Submit button */}
           <div>
             <button
               type="submit"
@@ -198,4 +215,3 @@ const Register = () => {
 };
 
 export default Register;
-
